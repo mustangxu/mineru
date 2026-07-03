@@ -3,12 +3,9 @@
 # Compute Capability version query (https://developer.nvidia.com/cuda-gpus)
 # support x86_64 architecture and ARM(AArch64) architecture
 FROM vllm/vllm-openai:latest
-#FROM docker.m.daocloud.io/vllm/vllm-openai:v0.21.0
-# FROM docker.m.daocloud.io/vllm/vllm-openai:v0.21.0-cu129
 
 # Install libgl for opencv support & Noto fonts for Chinese characters
-RUN --mount=type=cache,target=/var/cache/apt \
-    apt-get update && \
+RUN apt-get update && \
     apt-get install -y \
         fonts-noto-core \
         fonts-noto-cjk \
@@ -19,8 +16,7 @@ RUN --mount=type=cache,target=/var/cache/apt \
     rm -rf /var/lib/apt/lists/*
 
 # Install mineru latest
-RUN --mount=type=cache,target=/root/.cache/pip \
-    python3 -m pip install -U 'mineru[core]>=3.4.2' --break-system-packages && \
+RUN python3 -m pip install -U 'mineru[core]>=3.4.2' --break-system-packages && \
     python3 -m pip cache purge
 
 # Download models and update the configuration file
