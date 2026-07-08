@@ -5,11 +5,13 @@ name: Simple Docker Build
 on:
   # This will run the workflow on pushes to main and version tags.
   # Adjust to match your branching and tagging strategy.
-  push:
-    branches:
-      - main
-    tags:
-      - "*"
+  # push:
+  #   branches:
+  #     - main
+  #   tags:
+  #     - "*"
+  release:
+    types: released
 
 env:
   # Define the context path and Dockerfile path.
@@ -69,4 +71,5 @@ jobs:
           context: ${{ steps.paths.outputs.build_path }}
           file: ${{ steps.paths.outputs.dockerfile_path }}
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          # tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{github.event.release.tag_name}}
