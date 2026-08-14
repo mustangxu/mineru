@@ -18,7 +18,7 @@ RUN --mount=type=cache,target=/var/cache/apt \
 
 # Install mineru latest
 RUN --mount=type=cache,target=/root/.cache/pip \
-    python3 -m pip install -U 'mineru[core]>=3.4.4' --break-system-packages && \
+    python3 -m pip install -U 'mineru[core]>=3.4.5' --break-system-packages && \
     python3 -m pip cache purge
 
 # Download models and update the configuration file
