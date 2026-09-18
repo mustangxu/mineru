@@ -15,7 +15,7 @@ RUN --mount=type=cache,target=/var/cache/apt \
 
 # Install MinerU 4 with Torch; reuse vLLM from the base image.
 RUN --mount=type=cache,target=/root/.cache/pip \
-    python3 -m pip install -U 'mineru[torch]>=4.0.1,<5' --break-system-packages && \
+    python3 -m pip install -U 'mineru[torch]>=4.0.2,<5' --break-system-packages && \
     python3 -m pip cache purge
 
 # Keep build-time model downloads and runtime selection aligned, including builds without a GPU.
